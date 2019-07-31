@@ -1,6 +1,4 @@
 
-
-
 var model2048 = {
 
     numSquares: 16,
@@ -22,13 +20,21 @@ var model2048 = {
       this.insertRandomTile();
       this.insertRandomTile();
     },
+
+    gameOver: false,
+    score: 0,
+    moves: 0,
   
-  
-    insertRandomTile: function(  ) {
+    zeroes: function(){
       var zeroes = [];
       for( var i = 0; i < this.numSquares ; i++ ) {
         if( this.values[i] === 0 ) zeroes.push(i);
       }
+      return zeroes;
+    },
+
+    insertRandomTile: function(  ) {
+      var zeroes = this.zeroes();
       var rand = Math.floor( Math.random() * zeroes.length );
       var newValue = Math.random() < 0.9 ? 2 : 4;
       this.values[ zeroes[rand] ] = newValue;
@@ -36,7 +42,10 @@ var model2048 = {
   
     move: function( direction ) {
       this.updateGrid( direction );
-      if( this.rowChanged ) this.insertRandomTile();
+      if( this.rowChanged ){
+        this.moves += 1;
+        this.insertRandomTile();
+      } 
       this.rowChanged = false;
     },
   
@@ -61,17 +70,18 @@ var model2048 = {
       for( var i = 0; i < workingArr.length - 1 ; i++ ) {
         if( workingArr[i] === workingArr[i+1] ){
           workingArr[i] *= 2;
+          this.score += workingArr[i];
           workingArr[i+1] = 0;
         }
       }
       workingArr = workingArr.filter( notZero );
       for( i = 0; i < workingArr.length ; i++ ) {
-        if( arr[i] !== workingArr[i] ) this.rowChanged = true;
+        if( arr[i] !== workingArr[i] ) {
+          this.rowChanged = true;
+        }
       }
       return workingArr;
     },
-  
-  
   };
   
 export default model2048;

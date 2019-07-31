@@ -1,16 +1,13 @@
 
 import React, { Component } from 'react';
 
-const FOUR = 4;
-
-
 class Tile extends Component{
     render() {
       var colors = [ 'lightgray','orange', 'darkkhaki', 'firebrick', 'lightgreen', 'deepskyblue', 
           'goldenrod', 'red', 'gray', 
           'blue', 'purple', 'brown', 'black', 'darkyellow', 'lightblue', 'pink'];
-      var row = Math.floor( this.props.index / FOUR);
-      var col = this.props.index % FOUR;
+      var row = Math.floor( this.props.index / 4);
+      var col = this.props.index % 4;
       var colorIndex = Math.max( Math.floor(Math.log2( this.props.value )), 0 );
       var style = {
         left: col * 128,

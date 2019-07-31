@@ -13,7 +13,7 @@ body {
 
 .tile-square {
   color: white;
-  font-size: 36px;
+  font-size: 40px;
   font-weight: bold;
   height: 128px;
   line-height: 128px;
@@ -26,4 +26,33 @@ body {
   border-color: brown;
   box-sizing: border-box;
 }
+
+.score-display{
+  display: inline;
+  position: absolute;
+  height: 80px;
+  line-height: 80px;
+  color: white;
+  font-size: 30px;
+  background-color: darkslategray;
+  width: 220px;
+  top: 600px;
+  left: 0px;
+  text-align: center;
+}
+
+.moves-display{
+  /* display: inline; */
+  position: absolute;
+  height: 80px;
+  line-height: 80px;
+  color: white;
+  font-size: 30px;
+  background-color: darkslategray;
+  width: 220px;
+  top: 600px;
+  left: 280px;
+  text-align: center;
+}
+
 

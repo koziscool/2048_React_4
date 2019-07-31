@@ -3,6 +3,8 @@
 
 import React, { Component } from 'react';
 import Tile from "./Tile";
+import Score from "./Score";
+import Moves from "./Moves";
 import model from "./model2048";
 
 class Board2048 extends Component{
@@ -44,6 +46,9 @@ class Board2048 extends Component{
     return (
         <div>
           {children}
+          <br/><br/>
+          <Score value={model.score}/>
+          <Moves value={model.moves}/>
         </div>
       );
 
