@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class Tile extends Component{
     render() {
       var colors = [ 'lightgray','orange', 'darkkhaki', 'firebrick', 'lightgreen', 'deepskyblue', 
-          'goldenrod', 'red', 'gray', 
+          'darkslategray', 'red', 'gray', 
           'blue', 'purple', 'brown', 'black', 'darkyellow', 'lightblue', 'pink'];
       var row = Math.floor( this.props.index / 4);
       var col = this.props.index % 4;

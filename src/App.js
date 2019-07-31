@@ -3,9 +3,10 @@ import Board from './Board';
 
 class App extends Component {
   render(){
+      // console.log( "app", this.props )
       return (
         <div className="App">
-         <Board className="tile-grid"/>
+         <Board dispatch={this.props.dispatch} className="tile-grid"/>
         </div>
       );
   }

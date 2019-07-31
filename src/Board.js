@@ -5,21 +5,25 @@ import React, { Component } from 'react';
 import Tile from "./Tile";
 import Score from "./Score";
 import Moves from "./Moves";
+import Timer from "./Timer";
 import model from "./model2048";
+import { connect } from 'react-redux';
 
 class Board2048 extends Component{
   state = {
-      tiles: []
+      beginTime: Date.now(),
+      elapsedTime: 0
   }
 
   updateTileState() {
+
     this.setState({
-        tiles: [ ...model.values ]
+        elapsedTime: Date.now() - this.state.beginTime
     });
   }
 
   componentWillMount() {
-    model.init();
+    model.init(this.props.dispatch);
     this.updateTileState();
   }
 
@@ -37,11 +41,14 @@ class Board2048 extends Component{
 
   render() {
     var children = [];
-
-    for (var i = 0; i < this.state.tiles.length; i++) {
-      var value = this.state.tiles[i] || "&nbsp";
+    for (var i = 0; i < this.props.tiles.length; i++) {
+      var value = this.props.tiles[i] || "&nbsp";
       children.push(<Tile key={i} index={i} value={value}/>);
     }
+
+    var seconds = Math.floor( this.state.elapsedTime / 1000 );
+    var minutes = Math.floor( seconds / 60 );
+    seconds = seconds - minutes * 60;
 
     return (
         <div>
@@ -49,10 +56,17 @@ class Board2048 extends Component{
           <br/><br/>
           <Score value={model.score}/>
           <Moves value={model.moves}/>
+          <Timer minutes={minutes} seconds={seconds}/>
         </div>
       );
 
   }
 };
 
-export default Board2048;
+const mapStateToProps = (state) => {
+  return {
+    tiles: state.tiles
+  }
+};
+
+export default connect(mapStateToProps)(Board2048);

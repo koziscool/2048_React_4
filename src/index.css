@@ -28,31 +28,40 @@ body {
 }
 
 .score-display{
-  display: inline;
   position: absolute;
   height: 80px;
   line-height: 80px;
   color: white;
-  font-size: 30px;
+  font-size: 24px;
   background-color: darkslategray;
-  width: 220px;
-  top: 600px;
+  width: 160px;
+  top: 550px;
   left: 0px;
   text-align: center;
 }
 
 .moves-display{
-  /* display: inline; */
   position: absolute;
   height: 80px;
   line-height: 80px;
   color: white;
-  font-size: 30px;
+  font-size: 24px;
   background-color: darkslategray;
-  width: 220px;
-  top: 600px;
-  left: 280px;
+  width: 140px;
+  top: 550px;
+  left: 180px;
   text-align: center;
 }
 
-
+.timer-display{
+  position: absolute;
+  height: 80px;
+  line-height: 15px;
+  color: white;
+  font-size: 18px;
+  background-color: darkslategray;
+  width: 160px;
+  top: 550px;
+  left: 350px;
+  text-align: center;
+}

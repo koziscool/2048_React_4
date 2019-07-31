@@ -13,12 +13,17 @@ var model2048 = {
   
     rowChanged: false,
   
-    init: function(  ) {
+    init: function( dispatch ) {
+      this.dispatch = () => {
+        dispatch({ type: 'UPDATE_TILES', tiles: [...this.values]});
+      };
+
       for( var i = 0; i < this.numSquares ; i++ ) {
         this.values.push(0);
       }
       this.insertRandomTile();
       this.insertRandomTile();
+      this.dispatch();
     },
 
     gameOver: false,
@@ -46,6 +51,7 @@ var model2048 = {
         this.moves += 1;
         this.insertRandomTile();
       } 
+      this.dispatch();
       this.rowChanged = false;
     },
   
