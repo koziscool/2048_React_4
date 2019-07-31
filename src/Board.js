@@ -42,7 +42,7 @@ class Board2048 extends Component{
   render() {
     var children = [];
     for (var i = 0; i < this.props.tiles.length; i++) {
-      var value = this.props.tiles[i] || "&nbsp";
+      var value = this.props.tiles[i] || "";
       children.push(<Tile key={i} index={i} value={value}/>);
     }
 
