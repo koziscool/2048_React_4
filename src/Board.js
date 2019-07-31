@@ -6,7 +6,8 @@ import Tile from "./Tile";
 import Score from "./Score";
 import Moves from "./Moves";
 import Timer from "./Timer";
-import model from "./model2048";
+import modelDispatch from "./modelDispatch";
+import model from './model2048';
 import { connect } from 'react-redux';
 
 class Board2048 extends Component{
@@ -16,14 +17,13 @@ class Board2048 extends Component{
   }
 
   updateTileState() {
-
     this.setState({
         elapsedTime: Date.now() - this.state.beginTime
     });
   }
 
   componentWillMount() {
-    model.init(this.props.dispatch);
+    model.init(modelDispatch);
     this.updateTileState();
   }
 

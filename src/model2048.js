@@ -14,9 +14,11 @@ var model2048 = {
     rowChanged: false,
   
     init: function( dispatch ) {
-      this.dispatch = () => {
-        dispatch({ type: 'UPDATE_TILES', tiles: [...this.values]});
-      };
+      if( dispatch ){
+        this.dispatch = () => {
+          dispatch([...this.values]);
+        };
+      } else this.dispatch = ()=>{};
 
       for( var i = 0; i < this.numSquares ; i++ ) {
         this.values.push(0);
