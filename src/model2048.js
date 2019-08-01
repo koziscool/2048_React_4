@@ -16,7 +16,11 @@ var model2048 = {
     init: function( dispatch ) {
       if( dispatch ){
         this.dispatch = () => {
-          dispatch([...this.values]);
+          dispatch({
+            tiles: [...this.values],
+            score: this.score,
+            moves: this.moves
+          });
         };
       } else this.dispatch = ()=>{};
 

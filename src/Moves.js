@@ -1,5 +1,7 @@
 
 import React from 'react';
+import { connect } from 'react-redux';
+
 
 function Moves(props){
     return (
@@ -8,6 +10,12 @@ function Moves(props){
 
 }
 
-export default Moves;
+const mapStateToProps = ( state) => {
+    return {
+        value: state.moves
+    };
+}
+
+export default connect(mapStateToProps)(Moves);
 
 

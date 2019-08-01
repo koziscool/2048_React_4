@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { connect } from 'react-redux';
 
 function Score(props){
     return (
@@ -7,5 +8,10 @@ function Score(props){
     );
 }
 
-export default Score;
+const mapStateToProps = ( state) => {
+    return {
+        value: state.score
+    };
+}
 
+export default connect(mapStateToProps)(Score);

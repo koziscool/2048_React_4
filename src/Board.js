@@ -3,9 +3,6 @@
 
 import React, { Component } from 'react';
 import Tile from "./Tile";
-import Score from "./Score";
-import Moves from "./Moves";
-import Timer from "./Timer";
 import modelDispatch from "./modelDispatch";
 import model from './model2048';
 import { connect } from 'react-redux';
@@ -46,26 +43,18 @@ class Board2048 extends Component{
       children.push(<Tile key={i} index={i} value={value}/>);
     }
 
-    var seconds = Math.floor( this.state.elapsedTime / 1000 );
-    var minutes = Math.floor( seconds / 60 );
-    seconds = seconds - minutes * 60;
-
     return (
-        <div>
-          {children}
-          <br/><br/>
-          <Score value={model.score}/>
-          <Moves value={model.moves}/>
-          <Timer minutes={minutes} seconds={seconds}/>
-        </div>
-      );
+      <div className="tile-grid">
+        {children}
+      </div>
+    );
 
   }
 };
 
 const mapStateToProps = (state) => {
   return {
-    tiles: state.tiles
+    tiles: state.tiles,
   }
 };
 
