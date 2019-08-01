@@ -28,41 +28,13 @@ body {
   box-sizing: border-box;
 }
 
-.score-display{
+.display-box{
   position: absolute;
   height: 80px;
   line-height: 80px;
   color: white;
   font-size: 24px;
   background-color: darkslategray;
-  width: 160px;
-  top: 50px;
-  left: 10px;
   text-align: center;
 }
 
-.moves-display{
-  position: absolute;
-  height: 80px;
-  line-height: 80px;
-  color: white;
-  font-size: 24px;
-  background-color: darkslategray;
-  width: 160px;
-  top: 50px;
-  left: 180px;
-  text-align: center;
-}
-
-.timer-display{
-  position: absolute;
-  height: 80px;
-  line-height: 15px;
-  color: white;
-  font-size: 18px;
-  background-color: darkslategray;
-  width: 160px;
-  top: 50px;
-  left: 350px;
-  text-align: center;
-}
