@@ -2,7 +2,6 @@
 var model2048 = {
 
     numSquares: 16,
-    values: [],
   
     rowIndexes: {
       "left": [ [ 0,1,2,3 ], [ 4,5,6,7 ], [ 8,9,10,11 ], [ 12,13,14,15 ] ],
@@ -10,16 +9,19 @@ var model2048 = {
       "up":[ [ 0,4,8,12 ], [ 1,5,9,13 ], [ 2,6,10,14 ], [ 3,7,11,15 ] ],
       "down":[ [ 12,8,4,0 ], [ 13,9,5,1 ], [ 14,10,6,2 ], [ 15,11,7,3 ] ]
     },
-  
-    rowChanged: false,
-  
+     
     init: function( dispatch ) {
+      this.values = [];
+      this.gameOver = false;
+      this.score =  0;
+      this.moves = 0;
       if( dispatch ){
         this.dispatch = () => {
           dispatch({
             tiles: [...this.values],
             score: this.score,
-            moves: this.moves
+            moves: this.moves,
+            gameOver: this.gameOver
           });
         };
       } else this.dispatch = ()=>{};
@@ -29,13 +31,11 @@ var model2048 = {
       }
       this.insertRandomTile();
       this.insertRandomTile();
+      this.rowChanged =false;
       this.dispatch();
     },
 
-    gameOver: false,
-    score: 0,
-    moves: 0,
-  
+ 
     zeroes: function(){
       var zeroes = [];
       for( var i = 0; i < this.numSquares ; i++ ) {
@@ -44,11 +44,34 @@ var model2048 = {
       return zeroes;
     },
 
+    isGameOver: function(){
+      if( this.zeroes().length > 0 ) return false;
+
+      let rows = this.rowIndexes.left;
+      for (let i = 0; i < rows.length; i++) {
+        let row=rows[i];
+        for (let j = 0; j < row.length - 1; j++) {
+          if( this.values[row[j]] === this.values[row[j+1]] ) return false;
+        }
+      }
+
+      let cols = this.rowIndexes.up;
+      for (let i = 0; i < cols.length; i++) {
+        let col=cols[i];
+        for (let j = 0; j < col.length - 1; j++) {
+          if( this.values[col[j]] === this.values[col[j+1]] ) return false;
+        }
+      }
+
+      return true;
+    },
+
     insertRandomTile: function(  ) {
       var zeroes = this.zeroes();
       var rand = Math.floor( Math.random() * zeroes.length );
       var newValue = Math.random() < 0.9 ? 2 : 4;
       this.values[ zeroes[rand] ] = newValue;
+      this.gameOver = this.isGameOver();
     },
   
     move: function( direction ) {

@@ -7,9 +7,10 @@ body {
 .tile-grid {
   display: block;
   top: 150px;
-  height: 128px;
+  height: 512px;
   position: absolute;
-  width: 384px;
+  width: 512px;
+  border: 15px solid brown;
 }
 
 .tile-square {
@@ -37,4 +38,15 @@ body {
   background-color: darkslategray;
   text-align: center;
 }
+
+.new-game-button{
+  position: absolute;
+  height: 80px;
+  line-height: 80px;
+  color: white;
+  font-size: 24px;
+  background-color: darkslategray;
+  text-align: center;
+}
+
 
