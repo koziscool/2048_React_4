@@ -10,7 +10,7 @@ class App extends Component {
 
   componentWillMount() {
     this.props.startTimer();
-    setInterval(() => {
+    this.timer = setInterval(() => {
       this.props.timerIncrement();
     }, 1000);
     model.init(modelDispatch);
@@ -28,9 +28,16 @@ class App extends Component {
   restart = () =>{
     model.init(modelDispatch);
     this.props.startTimer();
+    this.timer = setInterval(() => {
+      this.props.timerIncrement();
+    }, 1000);
   }
 
   render(){
+
+    if( this.props.gameOver ){
+      clearInterval(this.timer);
+    }
 
     const scoreStyle = {
       top: 50,
@@ -68,8 +75,6 @@ class App extends Component {
       width: 160
     };
 
-    // console.log(this.props.gameOver);
-
     return (
       <div className="App">
       <br/><br/>
@@ -95,6 +100,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     startTimer: () => { dispatch({ type: 'START_TIMER'}) },
+    stopTimer: () => { dispatch({ type: 'STOP_TIMER'}) },
     timerIncrement: () => { dispatch({ type: 'TIMER_INCREMENT'}) }
   }
 };

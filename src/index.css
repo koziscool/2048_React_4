@@ -10,7 +10,7 @@ body {
   height: 512px;
   position: absolute;
   width: 512px;
-  border: 15px solid brown;
+  border: 15px solid;
 }
 
 .tile-square {
